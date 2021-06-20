@@ -32,7 +32,7 @@ function test() {
 	};
 	setTimeout(function () {
 		closeWS();
-	}, 10000);
+	}, 50000);
 
 }
 test();
