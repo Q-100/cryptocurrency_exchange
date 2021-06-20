@@ -27,7 +27,7 @@ function test() {
 	socket.onmessage = function (e) {
 		fetch(url, options)
 			.then(res => res.json())
-			.then(json => print_table(json, e.data))
+			.then(json => gap_calc(json, e.data))
 			.catch(err => console.error('error:' + err));
 	};
 	setTimeout(function () {
