@@ -3,8 +3,9 @@
     <!-- <script type="text/javascript" src="wss_sample_program.js"></script>
     <script type="text/javascript" src="test.js"></script>
     <script type="text/javascript" src="bitcoin_table.js"></script> -->
-    <script type="text/javascript" src="wss_sample_program.js"></script>
-    <script type="text/javascript" src="bitcoin_table.js"></script>
+    <!-- <script type="text/javascript" src="wss_sample_program.js"></script>
+    <script type="text/javascript" src="bitcoin_table.js"></script> -->
+    <script type="text/javascript" src="order.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
@@ -26,8 +27,8 @@
       ></script>
       <script type="text/javascript">
         new TradingView.widget({
-          width: 980,
-          height: 610,
+          width: 686,
+          height: 427,
           symbol: "BITHUMB:BTCKRW",
           interval: "5",
           timezone: "Asia/Seoul",
@@ -170,6 +171,80 @@
           <td id="t29_amount">0.5</td>
         </tr>
       </table>
+    </div>
+    <div style="width: 500px">
+      <span>
+        <ul class="top">
+          <li>
+            <a href="#" class="tabB__button" title="매수">매수</a>
+          </li>
+          <li>
+            <a href="#" class="tabB__button" title="매도">매도</a>
+          </li>
+          <li>
+            <a href="#" class="tabB__button" title="간편주문">시장가 매수</a>
+          </li>
+          <li>
+            <a href="#" class="tabB__button" title="거래내역">시장가 매도</a>
+          </li>
+        </ul>
+      </span>
+      <span>
+        <div>
+          <ul>
+            <li>
+              <strong style="padding-right: 200px">주문가능</strong>
+              <strong>0</strong> <i>원(KRW)</i>
+            </li>
+            <li>
+              <strong>매수가격</strong>&nbsp;<i style="padding-right: 30px"
+                >(KRW)</i
+              >
+              <input type="text" id="buy_coin_price" value="40415000" /><a
+                href="#"
+                class="minus"
+                title="-"
+                >-</a
+              ><a href="#" class="plus" title="+">+</a>
+            </li>
+            <li>
+              <strong>주문수량</strong>&nbsp;<i style="padding-right: 30px"
+                >(BTC)</i
+              >
+              <input type="text" class="txt All" placeholder="0" value="" />
+            </li>
+            <li>
+              <a href="#" class="qtBt">10%</a><a href="#" class="qtBt">25%</a
+              ><a href="#" class="qtBt">50%</a><a href="#" class="qtBt">100%</a
+              ><a>직접입력</a>
+            </li>
+            <li>
+              <strong>주문총액</strong> <i style="padding-right: 30px">(KRW)</i>
+              <input
+                type="text"
+                id="order_price_all"
+                placeholder="0"
+                value="0"
+              />
+            </li>
+          </ul>
+          <div>
+            <button
+              onclick="order_coin(order_price_all.value,buy_coin_price.value)"
+            >
+              주문하기
+            </button>
+          </div>
+          <div>
+            <span>[현재 손익률]</span>
+            <span>0.0(-300000원)</span>
+            <span>[현재 보유 코인]</span>
+            <span>1.32BTC</span>
+            <span>[현재 보유 KRW]</span>
+            <span>0원</span>
+          </div>
+        </div>
+      </span>
     </div>
   </body>
 </html>

@@ -1,10 +1,10 @@
 .scroll {
-  display: block;
+  display: inline-block;
   overflow: auto;
 }
 
 table {
-  width: 300;
+  width: 300px;
   height: 500px;
   border-spacing: 0;
   border: solid 1px;
@@ -19,8 +19,8 @@ td {
   padding: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
+  width: 300px;
 }
-
 #t14,
 #t13,
 #t12,
@@ -55,4 +55,22 @@ td {
 #t28,
 #t29 {
   background-color: rgba(255, 0, 0, 0.671);
+}
+
+div {
+  display: inline-block;
+}
+
+.top li {
+  float: left;
+  /* outline: solid 1px; */
+  margin-right: 30px;
+}
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
 }
