@@ -4,6 +4,7 @@ function print_table(coin_json, data) {
     let bithumb = JSON.parse(data);
     let buySellGb_tmp = bithumb.content.list[0].buySellGb;
     let contPrice_tmp = bithumb.content.list[0].contPrice;
+
     console.log("빗썸 현재가 : " + bithumb.content.list[0].contPrice), "통과";
 
 
