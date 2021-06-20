@@ -1,0 +1,58 @@
+.scroll {
+  display: block;
+  overflow: auto;
+}
+
+table {
+  width: 300;
+  height: 500px;
+  border-spacing: 0;
+  border: solid 1px;
+  border-collapse: collapse;
+}
+
+th {
+  border-bottom: 1px solid #000000;
+}
+td {
+  border-bottom: solid 1px;
+  padding: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#t14,
+#t13,
+#t12,
+#t11,
+#t10,
+#t9,
+#t8,
+#t7,
+#t6,
+#t5,
+#t4,
+#t3,
+#t2,
+#t1,
+#t0 {
+  background-color: rgba(0, 0, 248, 0.726);
+}
+
+#t15,
+#t16,
+#t17,
+#t18,
+#t19,
+#t20,
+#t21,
+#t22,
+#t23,
+#t24,
+#t25,
+#t26,
+#t27,
+#t28,
+#t29 {
+  background-color: rgba(255, 0, 0, 0.671);
+}
