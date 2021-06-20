@@ -11,20 +11,24 @@ function gap_calc(coin_json, data) {
         if (coin_json[0].orderbook_units[0].bid_price > contPrice_tmp) {
             gap_price = coin_json[0].orderbook_units[0].bid_price - contPrice_tmp;
             print_table("minus", gap_price);
+            print_checkbox(15); // bid 호가창 
         }
         else {
             gap_price = contPrice_tmp - coin_json[0].orderbook_units[0].bid_price;
             print_table("plus", gap_price);
+            print_checkbox(15); // bid 호가창 
         }
     }
     else if (buySellGb_tmp == 2) {
         if (coin_json[0].orderbook_units[0].ask_price > contPrice_tmp) {
             gap_price = coin_json[0].orderbook_units[0].ask_price - contPrice_tmp;
             print_table("minus", gap_price);
+            print_checkbox(14); // ask 호가창 
         }
         else {
             gap_price = contPrice_tmp - coin_json[0].orderbook_units[0].ask_price;
             print_table("plus", gap_price);
+            print_checkbox(14); // ask 호가창 
         }
     }
     //console.log("빗썸 현재가 : " + contPrice_tmp, "차이 : " + gap_price, "gb : " + buySellGb_tmp);
@@ -56,5 +60,16 @@ function gap_calc(coin_json, data) {
             bid_num += 1;
         }
     }
-
+    function print_checkbox(num) {
+        let cur_box_ask = document.getElementById("t" + num);
+        if (num == 15) {
+            let reset_box = document.getElementById("t14");
+            reset_box.style.border = "none";
+        }
+        else {
+            let reset_box = document.getElementById("t15");
+            reset_box.style.border = "none";
+        }
+        cur_box_ask.style.border = "solid";
+    }
 }
