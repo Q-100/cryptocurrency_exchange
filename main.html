@@ -1,10 +1,7 @@
 <html>
   <head>
-    <!-- <script type="text/javascript" src="wss_sample_program.js"></script>
-    <script type="text/javascript" src="test.js"></script>
-    <script type="text/javascript" src="bitcoin_table.js"></script> -->
-    <!-- <script type="text/javascript" src="wss_sample_program.js"></script>
-    <script type="text/javascript" src="bitcoin_table.js"></script> -->
+    <script type="text/javascript" src="websocket.js"></script>
+    <script type="text/javascript" src="bitcoin_table.js"></script>
     <script type="text/javascript" src="order.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
@@ -211,7 +208,13 @@
               <strong>주문수량</strong>&nbsp;<i style="padding-right: 30px"
                 >(BTC)</i
               >
-              <input type="text" class="txt All" placeholder="0" value="" />
+              <input
+                type="text"
+                class="txt All"
+                placeholder="0"
+                value=""
+                maxlength="10"
+              />
             </li>
             <li>
               <a href="#" class="qtBt">10%</a><a href="#" class="qtBt">25%</a
@@ -237,11 +240,13 @@
           </div>
           <div>
             <span>[현재 손익률]</span>
-            <span>0.0(-300000원)</span>
+            <span id="earning_rate">0.0(-300000원)</span>
             <span>[현재 보유 코인]</span>
-            <span>1.32BTC</span>
-            <span>[현재 보유 KRW]</span>
-            <span>0원</span>
+            <span id="my_btc">1.32BTC</span>
+            <script>
+              let my_coin = document.getElementById("my_btc");
+              my_coin.innerText = localStorage.getItem("BTC") + "BTC"; // 현재 코인갯수
+            </script>
           </div>
         </div>
       </span>
