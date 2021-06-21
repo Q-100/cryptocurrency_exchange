@@ -1,11 +1,16 @@
 .scroll {
   display: inline-block;
   overflow: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scroll::-webkit-scrollbar {
+  display: none;
 }
 
 table {
-  width: 300px;
-  height: 500px;
+  width: 350px;
+  height: 400px;
   border-spacing: 0;
   border: solid 1px;
   border-collapse: collapse;
@@ -36,7 +41,7 @@ td {
 #t2,
 #t1,
 #t0 {
-  background-color: rgba(0, 0, 248, 0.726);
+  background-color: #eef6ff;
 }
 
 #t15,
@@ -54,13 +59,17 @@ td {
 #t27,
 #t28,
 #t29 {
-  background-color: rgba(255, 0, 0, 0.671);
+  background-color: #fff0ef;
 }
 
-div {
-  display: inline-block;
+#div2,
+#div3 {
+  float: left;
 }
-
+#bottom_ui {
+  color: aliceblue;
+  margin-top: 20px;
+}
 .top li {
   float: left;
   /* outline: solid 1px; */
@@ -72,5 +81,24 @@ li {
 
 a {
   text-decoration: none;
-  color: #000000;
+  color: aliceblue;
+}
+#top_nav,
+#top_nav_myinfo {
+  display: inline-block;
+}
+#top_nav_myinfo {
+  margin-left: 40px;
+}
+#div3 {
+  margin-left: 20px;
+  margin-top: 30px;
+  border: solid 2px white;
+  color: aliceblue;
+}
+#div3_top_list {
+  margin-bottom: 50px;
+}
+#div2 {
+  margin-top: 30px;
 }

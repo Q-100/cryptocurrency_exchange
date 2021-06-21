@@ -35,6 +35,7 @@ function gap_calc(coin_json, data) { // 업비트 빗썸 가격 계산
     }
     //console.log("현재가 : " + contPrice_tmp, "차이 : " + gap_price, "gb : " + buySellGb_tmp);
     earning_rate_calc(contPrice_tmp);
+    //check_ask(contPrice_tmp);
 
 
 
@@ -80,10 +81,38 @@ function gap_calc(coin_json, data) { // 업비트 빗썸 가격 계산
     function earning_rate_calc(contPrice_tmp) { // 수익률 계산
         let earning_rate_id = document.getElementById("earning_rate");
         let my_average_price = localStorage.getItem("my_average_price");
+        let my_btc_have = localStorage.getItem("BTC");
         let earning_rate = ((parseInt(contPrice_tmp) - parseInt(my_average_price)) / parseInt(my_average_price)) * 100;
-        console.log(earning_rate);
+        let print_average = document.getElementById("my_btc_average");
+        let print_KRW = document.getElementById("my_KRW");
+
+        let my_krw_have = parseFloat(my_average_price) * parseFloat(my_btc_have);
+
+        print_KRW.innerText = localStorage.getItem("KRW") + " 원";
+        my_average_price = Math.round(my_average_price * 10) / 10;
+        print_average.innerText = my_average_price + " 원";
         earning_rate = Math.round(earning_rate * 100) / 100;
-        earning_rate_id.innerText = earning_rate + "%";
+        my_krw_have = my_krw_have * earning_rate;
+        my_krw_have = Math.round(my_krw_have * 10) / 10;
+        if (earning_rate < 0) {
+            earning_rate_id.style.color = "blue";
+        }
+        else {
+            earning_rate_id.style.color = "red";
+            my_krw_have = "+" + my_krw_have;
+        }
+        earning_rate_id.innerText = earning_rate + "%" + "(" + my_krw_have + " 원)";
+    }
+
+    function check_ask(price) {
+        if (parseFloat(localStorage.getItem("aks_price")) > parseFloat(price)) {
+            alert(localStorage.getItem("BTC_ask") + "개의 BTC가 체결되었습니다.");
+            localStorage.setItem("ask_price", -1);
+            let tmp = localStorage.getItem("BTC_ask");
+            let tmp1 = parseFloat(localStorage.getItem("BTC")) + parseFloat(tmp);
+            localStorage.setItem("BTC", tmp1);
+        }
+        else { console.log("실패"); }
     }
 }
 

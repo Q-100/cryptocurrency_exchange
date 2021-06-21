@@ -1,255 +1,564 @@
 <html>
   <head>
-    <script type="text/javascript" src="websocket.js"></script>
-    <script type="text/javascript" src="bitcoin_table.js"></script>
+    <!-- <script type="text/javascript" src="websocket.js"></script>
+    <script type="text/javascript" src="bitcoin_table.js"></script> -->
     <script type="text/javascript" src="order.js"></script>
+    <script type="text/javascript" src="bottom_ui.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container">
-      <div id="tradingview_35267"></div>
-      <div class="tradingview-widget-copyright">
-        <a
-          href="https://kr.tradingview.com/symbols/BTCKRW/?exchange=BITHUMB"
-          rel="noopener"
-          target="_blank"
-          ><span class="blue-text"></span
-        ></a>
+  <body style="background-color: rgb(32, 32, 58)">
+    <div id="top_nav">
+      <a href="" class="select"
+        ><em
+          ><img
+            src="img/BTC.png"
+            alt="비트코인"
+            style="width: 40px; height: auto" /></em
+        ><strong style="font-size: 30px; color: aliceblue">비트코인</strong></a
+      >
+      <span style="color: aliceblue"
+        ><strong id="bitcoin_price" style="font-size: 50px; margin-left: 30px">40,425,000</strong>
+        KRW</span
+      >
+      <div
+        id="top_nav_myinfo"
+        style="
+          font-family: 'Noto Sans KR', sans-serif;
+          color: aliceblue;
+          font-size: 15px;
+        "
+      >
+        <ul>
+          <li>
+            <span>[현재 손익률]</span>
+            <span id="earning_rate">로딩 중 . . .</span>
+          </li>
+          <li>
+            <span>[현재 보유 코인]</span>
+            <span id="my_btc">로딩 중 . . .</span>
+          </li>
+          <li>
+            <span>[현재 보유 KRW]</span>
+            <span id="my_KRW">로딩 중 . . .</span>
+          </li>
+          <li>
+            <span>[평단가]</span>
+            <span id="my_btc_average">로딩 중 . . .</span>
+          </li>
+        </ul>
+        <script>
+          let my_coin = document.getElementById("my_btc");
+          my_coin.innerText = localStorage.getItem("BTC") + " BTC"; // 현재 코인갯수
+        </script>
       </div>
-      <script
-        type="text/javascript"
-        src="https://s3.tradingview.com/tv.js"
-      ></script>
-      <script type="text/javascript">
-        new TradingView.widget({
-          width: 686,
-          height: 427,
-          symbol: "BITHUMB:BTCKRW",
-          interval: "5",
-          timezone: "Asia/Seoul",
-          theme: "dark",
-          style: "1",
-          locale: "kr",
-          toolbar_bg: "#f1f3f6",
-          enable_publishing: false,
-          hide_legend: true,
-          save_image: false,
-          studies: ["MASimple@tv-basicstudies"],
-          container_id: "tradingview_35267",
-        });
-      </script>
+    </div>
+    <div id="middle_ui">
+      <!-- TradingView Widget BEGIN -->
+      <div class="tradingview-widget-container" id="div1" style="width: 800px">
+        <div id="tradingview_35267"></div>
+        <div class="tradingview-widget-copyright"></div>
+        <script
+          type="text/javascript"
+          src="https://s3.tradingview.com/tv.js"
+        ></script>
+        <script type="text/javascript">
+          new TradingView.widget({
+            width: 800,
+            height: 427,
+            symbol: "BITHUMB:BTCKRW",
+            interval: "5",
+            timezone: "Asia/Seoul",
+            theme: "dark",
+            style: "1",
+            locale: "kr",
+            toolbar_bg: "#f1f3f6",
+            enable_publishing: false,
+            hide_legend: true,
+            save_image: false,
+            studies: ["MASimple@tv-basicstudies"],
+            container_id: "tradingview_35267",
+          });
+        </script>
+      </div>
     </div>
     <!-- TradingView Widget END -->
-    <div>
-      <table class="scroll">
+    <div id="div2">
+      <table
+        class="scroll"
+        style="
+          font-family: 'Noto Sans KR', sans-serif;
+          color: rgb(78, 172, 255);
+        "
+      >
         <tr id="title">
-          <th colspan="2">호가창</th>
+          <th>호가창</th>
+          <th>수량</th>
         </tr>
         <tr id="t0">
-          <td id="t0_price">30000</td>
-          <td id="t0_amount">0.5</td>
+          <td id="t0_price">로딩 중</td>
+          <td id="t0_amount">. . .</td>
         </tr>
         <tr id="t1">
-          <td id="t1_price">30000</td>
-          <td id="t1_amount">0.5</td>
+          <td id="t1_price">로딩 중</td>
+          <td id="t1_amount">. . .</td>
         </tr>
         <tr id="t2">
-          <td id="t2_price">30000</td>
-          <td id="t2_amount">0.5</td>
+          <td id="t2_price">로딩 중</td>
+          <td id="t2_amount">. . .</td>
         </tr>
         <tr id="t3">
-          <td id="t3_price">30000</td>
-          <td id="t3_amount">0.5</td>
+          <td id="t3_price">로딩 중</td>
+          <td id="t3_amount">. . .</td>
         </tr>
         <tr id="t4">
-          <td id="t4_price">30000</td>
-          <td id="t4_amount">0.5</td>
+          <td id="t4_price">로딩 중</td>
+          <td id="t4_amount">. . .</td>
         </tr>
         <tr id="t5">
-          <td id="t5_price">30000</td>
-          <td id="t5_amount">0.5</td>
+          <td id="t5_price">로딩 중</td>
+          <td id="t5_amount">. . .</td>
         </tr>
         <tr id="t6">
-          <td id="t6_price">30000</td>
-          <td id="t6_amount">0.5</td>
+          <td id="t6_price">로딩 중</td>
+          <td id="t6_amount">. . .</td>
         </tr>
         <tr id="t7">
-          <td id="t7_price">30000</td>
-          <td id="t7_amount">0.5</td>
+          <td id="t7_price">로딩 중</td>
+          <td id="t7_amount">. . .</td>
         </tr>
         <tr id="t8">
-          <td id="t8_price">30000</td>
-          <td id="t8_amount">0.5</td>
+          <td id="t8_price">로딩 중</td>
+          <td id="t8_amount">. . .</td>
         </tr>
         <tr id="t9">
-          <td id="t9_price">30000</td>
-          <td id="t9_amount">0.5</td>
+          <td id="t9_price">로딩 중</td>
+          <td id="t9_amount">. . .</td>
         </tr>
         <tr id="t10">
-          <td id="t10_price">30000</td>
-          <td id="t10_amount">0.5</td>
+          <td id="t10_price">로딩 중</td>
+          <td id="t10_amount">. . .</td>
         </tr>
         <tr id="t11">
-          <td id="t11_price">30000</td>
-          <td id="t11_amount">0.5</td>
+          <td id="t11_price">로딩 중</td>
+          <td id="t11_amount">. . .</td>
         </tr>
         <tr id="t12">
-          <td id="t12_price">30000</td>
-          <td id="t12_amount">0.5</td>
+          <td id="t12_price">로딩 중</td>
+          <td id="t12_amount">. . .</td>
         </tr>
         <tr id="t13">
-          <td id="t13_price">30000</td>
-          <td id="t13_amount">0.5</td>
+          <td id="t13_price">로딩 중</td>
+          <td id="t13_amount">. . .</td>
         </tr>
         <tr id="t14">
-          <td id="t14_price">30000</td>
-          <td id="t14_amount">0.5</td>
+          <td id="t14_price">로딩 중</td>
+          <td id="t14_amount">. . .</td>
         </tr>
         <tr id="t15">
-          <td id="t15_price">30000</td>
-          <td id="t15_amount">0.5</td>
+          <td id="t15_price">로딩 중</td>
+          <td id="t15_amount">. . .</td>
         </tr>
         <tr id="t16">
-          <td id="t16_price">30000</td>
-          <td id="t16_amount">0.5</td>
+          <td id="t16_price">로딩 중</td>
+          <td id="t16_amount">. . .</td>
         </tr>
         <tr id="t17">
-          <td id="t17_price">30000</td>
-          <td id="t17_amount">0.5</td>
+          <td id="t17_price">로딩 중</td>
+          <td id="t17_amount">. . .</td>
         </tr>
         <tr id="t18">
-          <td id="t18_price">30000</td>
-          <td id="t18_amount">0.5</td>
+          <td id="t18_price">로딩 중</td>
+          <td id="t18_amount">. . .</td>
         </tr>
         <tr id="t19">
-          <td id="t19_price">30000</td>
-          <td id="t19_amount">0.5</td>
+          <td id="t19_price">로딩 중</td>
+          <td id="t19_amount">. . .</td>
         </tr>
         <tr id="t20">
-          <td id="t20_price">30000</td>
-          <td id="t20_amount">0.5</td>
+          <td id="t20_price">로딩 중</td>
+          <td id="t20_amount">. . .</td>
         </tr>
         <tr id="t21">
-          <td id="t21_price">30000</td>
-          <td id="t21_amount">0.5</td>
+          <td id="t21_price">로딩 중</td>
+          <td id="t21_amount">. . .</td>
         </tr>
         <tr id="t22">
-          <td id="t22_price">30000</td>
-          <td id="t22_amount">0.5</td>
+          <td id="t22_price">로딩 중</td>
+          <td id="t22_amount">. . .</td>
         </tr>
         <tr id="t23">
-          <td id="t23_price">30000</td>
-          <td id="t23_amount">0.5</td>
+          <td id="t23_price">로딩 중</td>
+          <td id="t23_amount">. . .</td>
         </tr>
         <tr id="t24">
-          <td id="t24_price">30000</td>
-          <td id="t24_amount">0.5</td>
+          <td id="t24_price">로딩 중</td>
+          <td id="t24_amount">. . .</td>
         </tr>
         <tr id="t25">
-          <td id="t25_price">30000</td>
-          <td id="t25_amount">0.5</td>
+          <td id="t25_price">로딩 중</td>
+          <td id="t25_amount">. . .</td>
         </tr>
         <tr id="t26">
-          <td id="t26_price">30000</td>
-          <td id="t26_amount">0.5</td>
+          <td id="t26_price">로딩 중</td>
+          <td id="t26_amount">. . .</td>
         </tr>
         <tr id="t27">
-          <td id="t27_price">30000</td>
-          <td id="t27_amount">0.5</td>
+          <td id="t27_price">로딩 중</td>
+          <td id="t27_amount">. . .</td>
         </tr>
         <tr id="t28">
-          <td id="t28_price">30000</td>
-          <td id="t28_amount">0.5</td>
+          <td id="t28_price">로딩 중</td>
+          <td id="t28_amount">. . ./td></td>
         </tr>
+
         <tr id="t29">
-          <td id="t29_price">30000</td>
-          <td id="t29_amount">0.5</td>
+          <td id="t29_price">로딩 중</td>
+          <td id="t29_amount">. . .</td>
         </tr>
       </table>
     </div>
-    <div style="width: 500px">
-      <span>
+    <script>
+      document.getElementById("t10").scrollIntoView();
+    </script>
+
+    <div
+      id="div3"
+      style="font-family: 'Noto Sans KR', sans-serif; color: aliceblue"
+    >
+      <div id="div3_top_list">
         <ul class="top">
-          <li>
-            <a href="#" class="tabB__button" title="매수">매수</a>
+          <!-- <li>
+            <a href="#" class="tabB__button" title="매수" onclick="print_ui(1)"
+              >매수</a
+            >
           </li>
           <li>
-            <a href="#" class="tabB__button" title="매도">매도</a>
+            <a href="#" class="tabB__button" title="매도" onclick="print_ui(2)"
+              >매도</a
+            >
+          </li> -->
+          <li
+            id="market_buy_button"
+            style="border-bottom: solid 2px; color: red; margin-left: 30px"
+          >
+            <a
+              style="color: red"
+              id="market_buy_button1"
+              href="#"
+              title="시장가 매수"
+              onclick="print_ui(3)"
+              >시장가 매수</a
+            >
           </li>
-          <li>
-            <a href="#" class="tabB__button" title="간편주문">시장가 매수</a>
-          </li>
-          <li>
-            <a href="#" class="tabB__button" title="거래내역">시장가 매도</a>
+          <li
+            id="market_sell_button"
+            style="border-bottom: solid 2px; margin-left: 70px"
+          >
+            <a
+              id="market_sell_button1"
+              href="#"
+              title="시장가 매도"
+              onclick="print_ui(4)"
+              >시장가 매도</a
+            >
           </li>
         </ul>
-      </span>
-      <span>
-        <div>
-          <ul>
-            <li>
-              <strong style="padding-right: 200px">주문가능</strong>
-              <strong>0</strong> <i>원(KRW)</i>
-            </li>
-            <li>
-              <strong>매수가격</strong>&nbsp;<i style="padding-right: 30px"
-                >(KRW)</i
-              >
-              <input type="text" id="buy_coin_price" value="40415000" /><a
-                href="#"
-                class="minus"
-                title="-"
-                >-</a
-              ><a href="#" class="plus" title="+">+</a>
-            </li>
-            <li>
-              <strong>주문수량</strong>&nbsp;<i style="padding-right: 30px"
-                >(BTC)</i
-              >
-              <input
-                type="text"
-                class="txt All"
-                placeholder="0"
-                value=""
-                maxlength="10"
-              />
-            </li>
-            <li>
-              <a href="#" class="qtBt">10%</a><a href="#" class="qtBt">25%</a
-              ><a href="#" class="qtBt">50%</a><a href="#" class="qtBt">100%</a
-              ><a>직접입력</a>
-            </li>
-            <li>
-              <strong>주문총액</strong> <i style="padding-right: 30px">(KRW)</i>
-              <input
-                type="text"
-                id="order_price_all"
-                placeholder="0"
-                value="0"
-              />
-            </li>
-          </ul>
-          <div>
-            <button
-              onclick="order_coin(order_price_all.value,buy_coin_price.value)"
+      </div>
+      <!-- ======================== 매수 div ==================================-->
+      <div id="div_buy" style="display: none">
+        <ul>
+          <li style="margin-bottom: 30px">
+            <strong style="padding-right: 150px">주문가능</strong>
+            <strong id="KRW">0</strong> <i>원(KRW)</i>
+          </li>
+          <script>
+            let KRW_id = document.getElementById("KRW");
+            KRW_id.innerText = localStorage.getItem("KRW");
+          </script>
+          <li style="margin-bottom: 30px">
+            <strong>매수가격</strong>&nbsp;<i style="padding-right: 30px"
+              >(KRW)</i
             >
-              주문하기
-            </button>
-          </div>
-          <div>
-            <span>[현재 손익률]</span>
-            <span id="earning_rate">0.0(-300000원)</span>
-            <span>[현재 보유 코인]</span>
-            <span id="my_btc">1.32BTC</span>
+            <input type="text" id="buy_coin_price" value="40415000" />
+            <button>-</button>
+            <button>+</button>
+          </li>
+          <li style="margin-bottom: 30px">
+            <strong>주문수량</strong>&nbsp;<i style="padding-right: 30px"
+              >(BTC)</i
+            >
             <script>
-              let my_coin = document.getElementById("my_btc");
-              my_coin.innerText = localStorage.getItem("BTC") + "BTC"; // 현재 코인갯수
+              function amount2total(value) {
+                let order_price_all_id =
+                  document.getElementById("order_price_all");
+                let buy_coin_price_id =
+                  document.getElementById("buy_coin_price");
+                let tmp = parseInt(buy_coin_price_id.value) * parseFloat(value);
+                if (value) {
+                  order_price_all_id.value = Math.round(tmp * 1) / 1;
+                } else {
+                  order_price_all_id.value = 0;
+                }
+              }
             </script>
-          </div>
+            <input
+              type="text"
+              id="amount"
+              placeholder="0"
+              value=""
+              maxlength="10"
+              onkeyup="amount2total(this.value)"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+            />
+          </li>
+
+          <li>
+            <strong>주문총액</strong>
+            <i style="padding-right: 30px">(KRW)</i>
+            <script>
+              function total2amount(value) {
+                let amount_id = document.getElementById("amount");
+                let buy_coin_price_id =
+                  document.getElementById("buy_coin_price");
+                let tmp = parseFloat(value) / parseInt(buy_coin_price_id.value);
+                console.log(value);
+                if (value) {
+                  amount_id.value = tmp.toFixed(8);
+                } else {
+                  amount_id.value = (0.0).toFixed(8);
+                }
+              }
+              function aler() {
+                alert("미구현");
+              }
+            </script>
+            <input
+              type="text"
+              id="order_price_all"
+              placeholder="0"
+              value="0"
+              onkeyup="total2amount(this.value)"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+            />
+          </li>
+          <li>
+            <a href="#" class="qtBt">10%</a><a href="#" class="qtBt">25%</a
+            ><a href="#" class="qtBt">50%</a><a href="#" class="qtBt">100%</a>
+          </li>
+        </ul>
+        <div style="margin-top: 45px">
+          <button style="width: 400px; height: 50px" onclick="aler()">
+            매수
+          </button>
         </div>
-      </span>
+      </div>
+      <!-- ======================== 매도 div ==================================-->
+      <div id="div_sell" style="display: none">
+        <ul>
+          <li style="margin-bottom: 30px">
+            <strong style="padding-right: 100px">주문가능</strong>
+            <strong id="BTC_div2">0</strong> <i>BTC</i>
+          </li>
+          <script>
+            let BTC_id_div2 = document.getElementById("BTC_div2");
+            BTC_id_div2.innerText = localStorage.getItem("BTC");
+          </script>
+          <li style="margin-bottom: 30px">
+            <strong>매도가격</strong>&nbsp;<i style="padding-right: 30px"
+              >(KRW)</i
+            >
+            <input type="text" id="buy_coin_price_div2" value="40415000" />
+            <button>-</button>
+            <button>+</button>
+          </li>
+          <li style="margin-bottom: 30px">
+            <strong>주문수량</strong>&nbsp;<i style="padding-right: 30px"
+              >(BTC)</i
+            >
+            <script>
+              function amount2total_div2(value) {
+                let order_price_all_id_div2 = document.getElementById(
+                  "order_price_all_div2"
+                );
+                let buy_coin_price_id_div2 = document.getElementById(
+                  "buy_coin_price_div2"
+                );
+                let tmp =
+                  parseInt(buy_coin_price_id_div2.value) * parseFloat(value);
+                if (value) {
+                  order_price_all_id_div2.value = Math.round(tmp * 1) / 1;
+                } else {
+                  order_price_all_id_div2.value = 0;
+                }
+              }
+            </script>
+            <input
+              type="text"
+              id="amount_div2"
+              placeholder="0"
+              value=""
+              maxlength="10"
+              onkeyup="amount2total_div2(this.value)"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+            />
+          </li>
+
+          <li>
+            <strong>주문총액</strong>
+            <i style="padding-right: 30px">(KRW)</i>
+            <script>
+              function total2amount_div2(value) {
+                let amount_id_div2 = document.getElementById("amount_div2");
+                let buy_coin_price_id_div2 = document.getElementById(
+                  "buy_coin_price_div2"
+                );
+                let tmp_div2 =
+                  parseFloat(value) / parseInt(buy_coin_price_id_div2.value);
+                console.log(value);
+                if (value) {
+                  amount_id_div2.value = tmp_div2.toFixed(8);
+                } else {
+                  amount_id_div2.value = (0.0).toFixed(8);
+                }
+              }
+            </script>
+            <input
+              type="text"
+              id="order_price_all_div2"
+              placeholder="0"
+              value="0"
+              onkeyup="total2amount_div2(this.value)"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+            />
+          </li>
+          <li>
+            <a href="#" class="qtBt">10%</a><a href="#" class="qtBt">25%</a
+            ><a href="#" class="qtBt">50%</a><a href="#" class="qtBt">100%</a>
+          </li>
+        </ul>
+        <div style="margin-top: 45px">
+          <button style="width: 400px; height: 50px" onclick="aler()">
+            매도
+          </button>
+        </div>
+      </div>
+      <!-- ======================== 시장가 매수 div ==================================-->
+      <div id="div_market_buy" style="border-top: solid 2px">
+        <ul>
+          <li style="margin-bottom: 30px">
+            <strong style="padding-right: 110px">주문가능</strong>
+            <strong id="KRW_div3">0</strong> <i>원(KRW)</i>
+          </li>
+          <script>
+            let KRW_id_div3 = document.getElementById("KRW_div3");
+            KRW_id_div3.innerText = localStorage.getItem("KRW");
+          </script>
+
+          <li>
+            <strong>주문총액</strong>
+            <i style="padding-right: 30px">(KRW)</i>
+            <input
+              type="text"
+              id="order_price_all_div3"
+              placeholder="0"
+              value="0"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+            />
+          </li>
+          <li style="margin-left: 150px">
+            <button onclick="percent(0.1)">10%</button
+            ><button onclick="percent(0.25)">25%</button
+            ><button onclick="percent(0.5)">50%</button
+            ><button onclick="percent(1)">100%</button>
+            <script>
+              function percent(num) {
+                let krw_tmp = localStorage.getItem("KRW");
+                let frame_tmp = document.getElementById("order_price_all_div3");
+                let tmp = parseInt(krw_tmp) * num;
+                tmp = Math.round(tmp * 10) / 10;
+                frame_tmp.value = tmp;
+              }
+            </script>
+          </li>
+        </ul>
+        <div style="margin-top: 45px">
+          <button
+            style="
+              width: 400px;
+              height: 50px;
+              background-color: rgb(255, 30, 30);
+              font-family: 'Noto Sans KR', sans-serif;
+              color: aliceblue;
+              font-size: 15px;
+            "
+            onclick="order_coin(order_price_all_div3.value)"
+          >
+            매 수
+          </button>
+        </div>
+      </div>
+      <!-- ======================== 시장가 매도 div ==================================-->
+      <div id="div_market_sell" style="display: none; border-top: solid 2px">
+        <ul>
+          <li style="margin-bottom: 30px">
+            <strong style="padding-right: 110px">주문가능</strong>
+            <strong id="BTC_div4">0</strong> <i>BTC</i>
+          </li>
+          <script>
+            let BTC_id_div4 = document.getElementById("BTC_div4");
+            BTC_id_div4.innerText = localStorage.getItem("BTC");
+          </script>
+          <li>
+            <strong>주문수량</strong>
+            <i style="padding-right: 30px">(BTC)</i>
+
+            <input
+              style="margin-left: 7px"
+              type="text"
+              id="order_price_all_div4"
+              placeholder="0"
+              value="0"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+            />
+          </li>
+          <li style="margin-left: 150px">
+            <button onclick="percent1(0.1)">10%</button
+            ><button onclick="percent1(0.25)">25%</button
+            ><button onclick="percent1(0.5)">50%</button
+            ><button onclick="percent1(1)">100%</button>
+            <script>
+              function percent1(num) {
+                let btc_tmp = localStorage.getItem("BTC");
+                let frame_tmp = document.getElementById("order_price_all_div4");
+                let tmp = parseFloat(btc_tmp) * num;
+                tmp = Math.round(tmp * 100000000) / 100000000;
+                frame_tmp.value = tmp;
+              }
+            </script>
+          </li>
+        </ul>
+        <div style="margin-top: 45px">
+          <button
+            style="
+              width: 400px;
+              height: 50px;
+              background-color: rgb(30, 30, 255);
+              font-family: 'Noto Sans KR', sans-serif;
+              color: aliceblue;
+              font-size: 15px;
+            "
+            onclick="sell_coin(order_price_all_div4.value)"
+          >
+            매 도
+          </button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
