@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="order.js"></script>
+    <script type="text/javascript" src="bitcoin_table.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <ul>
+      <li style="margin-bottom: 30px">
+        <strong style="padding-right: 150px">주문가능</strong>
+        <strong id="KRW">0</strong> <i>원(KRW)</i>
+      </li>
+      <script>
+        let KRW_id = document.getElementById("KRW");
+        KRW_id.innerText = localStorage.getItem("KRW");
+      </script>
+      <li style="margin-bottom: 30px">
+        <strong>매수가격</strong>&nbsp;<i style="padding-right: 30px">(KRW)</i>
+        <input type="text" id="buy_coin_price" value="40415000" />
+        <button>-</button>
+        <button>+</button>
+      </li>
+      <li style="margin-bottom: 30px">
+        <strong>주문수량</strong>&nbsp;<i style="padding-right: 30px">(BTC)</i>
+        <script>
+          function amount2total(value) {
+            let order_price_all_id = document.getElementById("order_price_all");
+            let buy_coin_price_id = document.getElementById("buy_coin_price");
+            let tmp = parseInt(buy_coin_price_id.value) * parseFloat(value);
+            if (value) {
+              order_price_all_id.value = Math.round(tmp * 1) / 1;
+            } else {
+              order_price_all_id.value = 0;
+            }
+          }
+        </script>
+        <input
+          type="text"
+          id="amount"
+          placeholder="0"
+          value=""
+          maxlength="10"
+          onkeyup="amount2total(this.value)"
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+        />
+      </li>
+
+      <li>
+        <strong>주문총액</strong>
+        <i style="padding-right: 30px">(KRW)</i>
+        <script>
+          function total2amount(value) {
+            let amount_id = document.getElementById("amount");
+            let buy_coin_price_id = document.getElementById("buy_coin_price");
+            let tmp = parseFloat(value) / parseInt(buy_coin_price_id.value);
+            console.log(value);
+            if (value) {
+              amount_id.value = tmp.toFixed(8);
+            } else {
+              amount_id.value = (0.0).toFixed(8);
+            }
+          }
+        </script>
+        <input
+          type="text"
+          id="order_price_all"
+          placeholder="0"
+          value="0"
+          onkeyup="total2amount(this.value)"
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+        />
+      </li>
+      <li>
+        <a href="#" class="qtBt">10%</a><a href="#" class="qtBt">25%</a
+        ><a href="#" class="qtBt">50%</a><a href="#" class="qtBt">100%</a>
+      </li>
+    </ul>
+    <div style="margin-top: 45px">
+      <button
+        style="width: 400px; height: 50px"
+        onclick="order_coin(order_price_all.value,buy_coin_price.value)"
+      >
+        주문하기
+      </button>
+    </div>
+  </body>
+</html>
