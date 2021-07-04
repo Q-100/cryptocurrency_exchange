@@ -17,13 +17,15 @@ table {
 }
 
 th {
-  border-bottom: 1px solid #000000;
+  border: 1px solid #000000;
+  background-color: rgb(32, 32, 58);
 }
 td {
   border-bottom: solid 1px;
   padding: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 50px;
   width: 300px;
 }
 #t14,
@@ -83,16 +85,17 @@ a {
   text-decoration: none;
   color: aliceblue;
 }
-#top_nav,
+#bitcoin_info,
 #top_nav_myinfo {
   display: inline-block;
 }
-#top_nav_myinfo {
-  margin-left: 40px;
-}
+
+/* #top_nav_myinfo {
+  margin-left: 10px;
+} */
 #div3 {
-  margin-left: 20px;
-  margin-top: 30px;
+  margin-left: 45px;
+  margin-top: 10px;
   border: solid 2px white;
   color: aliceblue;
 }
@@ -100,5 +103,50 @@ a {
   margin-bottom: 50px;
 }
 #div2 {
-  margin-top: 30px;
+  margin-top: 10px;
+}
+.fixhead {
+  position: sticky;
+  top: 0;
+}
+button {
+  font-family: "Noto Sans KR", sans-serif;
+}
+input {
+  font-family: "Noto Sans KR", sans-serif;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  color: rgb(75, 75, 75);
+  width: 190px;
+}
+
+#popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+#popup.hide {
+  display: none;
+}
+
+#popup.multiple-filter {
+  backdrop-filter: blur(4px) grayscale(90%);
+  -webkit-backdrop-filter: blur(4px) grayscale(90%);
+}
+
+#popup .content {
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }

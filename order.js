@@ -82,5 +82,8 @@ function sell_coin(all_price) {
         let btc_tmp2 = parseFloat(localStorage.getItem("BTC")) - parseFloat(all_price);
         btc_tmp2 = Math.round(btc_tmp2 * 100000000) / 100000000;
         localStorage.setItem("BTC", btc_tmp2);
+        if (localStorage.getItem("BTC") == 0) {
+            localStorage.setItem("my_average_price", 0);
+        }
     }
 }

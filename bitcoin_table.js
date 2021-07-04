@@ -71,6 +71,7 @@ function gap_calc(coin_json, data) { // 업비트 빗썸 가격 계산
         if (num == 15) {
             let reset_box = document.getElementById("t14");
             reset_box.style.border = "none";
+
         }
         else {
             let reset_box = document.getElementById("t15");
@@ -84,17 +85,30 @@ function gap_calc(coin_json, data) { // 업비트 빗썸 가격 계산
         let my_btc_have = localStorage.getItem("BTC");
         let earning_rate = ((parseInt(contPrice_tmp) - parseInt(my_average_price)) / parseInt(my_average_price)) * 100;
         let print_average = document.getElementById("my_btc_average");
-        let print_KRW = document.getElementById("my_KRW");
+        let print_KRW = document.getElementById("KRW_div3");
+        let print_BTC = document.getElementById("BTC_div4");
+        let bitcoin = document.getElementById("bitcoin_price");
+        let bitcoin_tmp = parseInt(contPrice_tmp);
+        bitcoin.innerText = bitcoin_tmp.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        print_KRW.innerText = localStorage.getItem("KRW");
+        print_BTC.innerText = localStorage.getItem("BTC");
+
 
         let my_krw_have = parseFloat(my_average_price) * parseFloat(my_btc_have);
 
-        print_KRW.innerText = localStorage.getItem("KRW") + " 원";
+        //print_KRW.innerText = localStorage.getItem("KRW") + " 원";
         my_average_price = Math.round(my_average_price * 10) / 10;
         print_average.innerText = my_average_price + " 원";
         earning_rate = Math.round(earning_rate * 100) / 100;
         my_krw_have = my_krw_have * earning_rate;
         my_krw_have = Math.round(my_krw_have * 10) / 10;
-        if (earning_rate < 0) {
+        let my_coin = document.getElementById("my_btc");
+        my_coin.innerText = localStorage.getItem("BTC") + " BTC"; // 현재 코인갯수
+        if (localStorage.getItem("my_average_price") == 0) {
+            earning_rate = 0;
+            my_krw_have = 0;
+        }
+        else if (earning_rate < 0) {
             earning_rate_id.style.color = "blue";
         }
         else {
