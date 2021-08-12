@@ -71,13 +71,14 @@ function gap_calc(coin_json, data) { // 업비트 빗썸 가격 계산
         if (num == 15) {
             let reset_box = document.getElementById("t14");
             reset_box.style.border = "none";
-
         }
         else {
             let reset_box = document.getElementById("t15");
             reset_box.style.border = "none";
         }
         cur_box_ask.style.border = "solid";
+        cur_box_ask.style.borderColor = "black";
+
     }
     function earning_rate_calc(contPrice_tmp) { // 수익률 계산
         let earning_rate_id = document.getElementById("earning_rate");
